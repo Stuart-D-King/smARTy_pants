@@ -204,3 +204,5 @@ Segments of my code were adapted from the following three sources:
 - Jen Waller's [Wildflower Finder](https://github.com/jw15/wildflower-finder) project
 - Aurélien Géron's **Hands-On Maching Learning with Scikit-Learn & TensorFlow** and accompanying Jupyter notebook for Chapter 13: Convolutional Neural Networks
 - Ankit Sachan's Tensorflow Tutorial 2: image classifier using convolutional neural network [blog post](http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/) and [GitHub repository](https://github.com/sankit1/cv-tricks.com/tree/master/Tensorflow-tutorials/tutorial-2-image-classifier)
+
+&copy; Stuart King 2017. All rights reserved.
