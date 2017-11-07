@@ -90,27 +90,27 @@ Test accuracy: 18.75%
 
 The above results were certainly not as high as I had hoped, but it is important to temper expectations given the difficulty of this computer-vision task. Random guessing would result in an average correct style classification of 10 percent, thus 58 percent accuracy might not be that bad...
 
-To supplement these results, I returned the top five art style predictions for three images.
+To supplement these results, I returned the **top five art style predictions** for three images.
 
 #### Image #1  
 **Actual style:**  
 Abstract Art  
 
-**Keras ResNet50 - Top 5 Predictions:**  
+**Keras ResNet50**  
 Pop Art: 48.64%  
 Art Nouveau (Modern): 18.67%  
 Surrealism: 9.60%  
 Abstract Art: 7.16%  
 Art Deco: 4.39%
 
-**TensorFlow Inception v3 - Top 5 Predictions:**  
+**TensorFlow Inception v3**  
 Art Nouveau (Modern): 29.58%  
 Abstract Art: 25.58%  
 Op Art: 19.12%  
 Expressionism: 13.29%  
 Cubism: 5.67%  
 
-**TensorFlow (standard) - Top 5 Predictions:**  
+**TensorFlow**  
 Abstract Art: 97.45%  
 Op Art: 2.47%  
 Expressionism: 0.06%  
@@ -123,21 +123,21 @@ Cubism: 0.01%
 **Actual style:**  
 Surrealism
 
-**Keras ResNet50 - Top 5 Predictions:**   
+**Keras ResNet50**   
 Expressionism: 76.49%  
 Surrealism: 11.88%  
 Abstract Art: 4.36%  
 Fauvism: 2.66%  
 Cubism: 1.89%  
 
-**TensorFlow Inception v3 - Top 5 Predictions:**  
+**TensorFlow Inception v3**  
 Expressionism: 93.97%  
 Cubism: 5.87%  
 Art Nouveau (Modern): 0.06%  
 Abstract Art: 0.05%  
 Surrealism: 0.02%  
 
-**TensorFlow (standard) - Top 5 Predictions:**  
+**TensorFlow**  
 Surrealism: 42.47%  
 Impressionism: 21.90%  
 Cubism: 20.16%  
@@ -150,21 +150,21 @@ Op Art: 2.58%
 **Actual style:**  
 Pop Art
 
-**Keras ResNet50 - Top 5 Predictions:**  
+**Keras ResNet50**  
 Pop Art: 96.31%  
 Op Art: 2.33%  
 Abstract Art: 1.01%  
 Expressionism: 0.28%  
 Cubism: 0.03%  
 
-**TensorFlow Inception v3 - Top 5 Predictions:**  
+**TensorFlow Inception v3**  
 Pop Art: 87.70%  
 Op Art: 5.65%  
 Expressionism: 5.60%  
 Cubism: 0.44%  
 Abstract Art: 0.36%  
 
-**TensorFlow (standard) - Top 5 Predictions:**  
+**TensorFlow**  
 Fauvism: 99.07%  
 Abstract Art: 0.91%  
 Cubism: 0.02%  
@@ -202,7 +202,7 @@ As mentioned above, due to file size and storage limitations, the original image
 ### Acknowledgements
 Segments of my code were adapted from the following three sources:
 - Jen Waller's [Wildflower Finder](https://github.com/jw15/wildflower-finder) project
-- Aurélien Géron's **Hands-On Maching Learning with Scikit-Learn & TensorFlow** and accompanying Jupyter notebook for Chapter 13: Convolutional Neural Networks
+- Aurélien Géron's Hands-On Maching Learning with Scikit-Learn & TensorFlow and accompanying Jupyter notebook for Chapter 13: Convolutional Neural Networks
 - Ankit Sachan's Tensorflow Tutorial 2: image classifier using convolutional neural network [blog post](http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/) and [GitHub repository](https://github.com/sankit1/cv-tricks.com/tree/master/Tensorflow-tutorials/tutorial-2-image-classifier)
 
 &copy; Stuart King 2017. All rights reserved.
