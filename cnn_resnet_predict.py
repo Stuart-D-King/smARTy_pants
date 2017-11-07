@@ -11,7 +11,7 @@ from keras.models import load_model
 from keras.models import model_from_json
 
 '''
-Load a pre-trained Keras CNN model and make a art style prediction for a new image. Predictions can be made by typing the following in the command line:
+Load a pre-trained Keras CNN model and make an art style prediction for a new image. Predictions can be made by running the following command from the command line:
     python make_prediction.py path_to_image
 '''
 

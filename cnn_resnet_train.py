@@ -1,5 +1,5 @@
 '''
-Sections of code adapted from from Jen Waller's Wildflower Finder project (https://github.com/jw15/wildflower-finder)
+Sections of code adapted from Jen Waller's Wildflower Finder project (https://github.com/jw15/wildflower-finder)
 '''
 
 import numpy as np

@@ -10,7 +10,7 @@ import pickle, cv2
 from sklearn.preprocessing import LabelEncoder
 
 '''
-Read in images and accompanying metadata to create sampled dataset consisting of 200 images from the ten art styles of interest. Save resultant pre-processed datasets to file.
+Read in images and accompanying metadata to create sampled dataset consisting of 200 images from the ten art styles of interest. Save processed datasets to file.
 '''
 
 def make_img_df():

@@ -14,7 +14,6 @@ from keras.utils import np_utils
 Train and save a CNN model with three convolutional layers using TensorFlow
 '''
 
-
 seed(1337)
 set_random_seed(2)
 

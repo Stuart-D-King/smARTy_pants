@@ -15,14 +15,15 @@ import tensorflow.contrib.slim as slim
 from scipy.misc import imresize
 
 '''
-Prep, train, and make art image classification predictions using a TensorFlow CNN with an InceptionV3 baseline model.
+Prep, train, and make art image classification predictions using a TensorFlow CNN with an Inception v3 baseline model.
 
 The code can be run from the command line for one of three processes:
+
 1. python tf_cnn_inception.py initial
         To create the necessary datasets and data files
 
 2. python tf_cnn_inception.py train
-        To train and save the CNN model
+        To train and save the CNN model to disk
 
 3. python tf_cnn_inception.py predict
         To predict the classification of a new art image - user is prompted to enter image file path after executing the above command
@@ -294,7 +295,7 @@ if __name__ == '__main__':
     _, run_type = argv
 
     if run_type.lower() not in ['inital', 'train', 'predict']:
-        print('Please run the code in one of three ways: \n- python tf_cnn_inception.py initial \n- python tf_cnn_inception.py train \n- python tf_cnn_inception.py predict')
+        print('Please execute a command in one of three ways: \n- python tf_cnn_inception.py initial \n- python tf_cnn_inception.py train \n- python tf_cnn_inception.py predict')
 
     if run_type.lower() == 'initial':
         initial_run()
