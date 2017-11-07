@@ -1,3 +1,7 @@
+'''
+Sections of code adapted from Aurélien Géron's Hands-On Maching Learning with Scikit-Learn & TensorFlow textbook and accompanying Jupyter notebook for Chapter 13: Convolutional Neural Networks.
+'''
+
 import numpy as np
 from sys import argv
 from scipy.misc import imresize
@@ -6,6 +10,10 @@ from keras import optimizers
 from keras.models import load_model
 from keras.models import model_from_json
 
+'''
+Load a pre-trained Keras CNN model and make a art style prediction for a new image. Predictions can be made by typing the following in the command line:
+    python make_prediction.py path_to_image
+'''
 
 def load_model():
     json_file = open('saved_model/resnet_model.json', 'r')

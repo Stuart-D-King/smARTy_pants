@@ -1,3 +1,7 @@
+'''
+Sections of code adapted from Aurélien Géron's Hands-On Maching Learning with Scikit-Learn & TensorFlow textbook and accompanying Jupyter notebook for Chapter 13: Convolutional Neural Networks.
+'''
+
 import numpy as np
 import pandas as pd
 from random import sample
@@ -5,6 +9,9 @@ from scipy.misc import imresize
 import pickle, cv2
 from sklearn.preprocessing import LabelEncoder
 
+'''
+Read in images and accompanying metadata to create sampled dataset consisting of 200 images from the ten art styles of interest. Save resultant pre-processed datasets to file.
+'''
 
 def make_img_df():
     img_root = 'img/'
@@ -89,8 +96,6 @@ def sampled_paths_classes(df):
 
 
 def prepare_image(image, target_width=224, target_height=224, max_zoom=0.2):
-    '''Zooms and crops the image randomly for data augmentation'''
-
     height = image.shape[0]
     width = image.shape[1]
     image_ratio = width / height

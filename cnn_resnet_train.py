@@ -1,3 +1,7 @@
+'''
+Sections of code adapted from from Jen Waller's Wildflower Finder project (https://github.com/jw15/wildflower-finder)
+'''
+
 import numpy as np
 import pandas as pd
 from random import sample
@@ -9,6 +13,9 @@ from keras.models import Sequential, Model
 from keras.layers import Dropout, Flatten, Dense
 from keras.utils import np_utils
 
+'''
+Train and save a Keras CNN model using the ResNet50 baseline model
+'''
 
 def train_validation_split(x, y):
     # split data into training and test sets
