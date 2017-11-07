@@ -6,7 +6,7 @@ Created by **Stuart King** - November 2017
 - [Overview](#overview)
 - [Data Wrangling](#data-wrangling)
 - [Modeling](#modeling)
-  * [Keras ResNet50](#keras-with-tensorflow-backend-and-ResNet50-baseline)
+  * [Keras ResNet50](#keras-with-tensorflow-backend-and-resnet50-baseline)
   * [TensorFlow Inception v3](#tensorflow-with-inception-v3-transfer-learning)
   * [TensorFlow](#tensorflow)
 - [Results](#results)
