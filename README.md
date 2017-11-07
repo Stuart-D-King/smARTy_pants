@@ -6,8 +6,8 @@ Created by **Stuart King** - November 2017
 - [Overview](#overview)
 - [Data Wrangling](#data-wrangling)
 - [Modeling](#modeling)
-  * [Keras ResNet50](#keras-with-tensorflow-backend-and-resnet50-baseline)
-  * [TensorFlow Inception v3](#tensorflow-with-inception-v3-transfer-learning)
+  * [Keras ResNet50](#keras-with-resnet50-baseline)
+  * [TensorFlow Inception v3](#tensorflow-with-inception-v3-baseline)
   * [TensorFlow](#tensorflow)
 - [Results](#results)
 - [Next Steps](#next-steps)
@@ -21,14 +21,12 @@ I've always wanted to be able to speak intellectually about art. Sadly, despite 
 ### Data Wrangling
 The Kaggle [Painter By Numbers](https://www.kaggle.com/c/painter-by-numbers) competition challenges participants to use computer vision to examine pairs of paintings and determine if they are by the same artist. Included in this challenge is a dataset of over 100,000 images with image-specific metadata, including the particular style of art the image is classified into. Using this large dataset, I sampled 200 images from each style I wanted to focus on - **Impressionism, Expressionism, Surrealism, Cubism, Abstract Art, Fauvism, Pop Art, Art Deco, Op Art, and Art Nouveau (Modern)** - to create a project dataset of 2,000 images.
 
-To prepare the data, I pre-processed each image by converting the image into a normalized, pixel array of shape 224 x 224 x 3, which was then cropped, centered, and randomly rotated. Image labels (art styles) were encoded into a range of values between 0 and 9, and for some models, then converted into one-hot vector arrays.
-
-Finally, the prepared dataset of image pixel arrays and labels were split into training, validation, and test sets.
+To prepare the data, I pre-processed each image by converting the image into a normalized pixel array [shape (224,224,3) for ResNet50 and shape (299,299,3) for Inception v3]. Image labels (art styles) were encoded into a range of values between 0 and 9, and for some models, then converted into one-hot vector arrays. Finally, the prepared dataset of image pixel arrays and labels were split into training, validation, and test sets.
 
 ### Modeling
 I developed three separate Convolutional Neural Network (CNN) models for this activity.
 
-#### Keras with TensorFlow backend and ResNet50 baseline
+#### Keras with ResNet50 baseline
 I used the Keras neural network API due to the deep learning models and their pre-trained weights that Keras has made publicly available. In particular, I wanted to use the **ResNet50** model with weights pre-trained on the ImageNet dataset. Because ResNet50 was trained on millions of images, it is already able to detect basic features such as edges and colors. Using this as my base model, I was then able to add fully connected layers specific to my image dataset to fine tune ResNet50 and apply its understanding of basic objects to identify features that distinguish different art styles.
 
 **Base Model:**  
@@ -36,15 +34,15 @@ ResNet50 trained on ImageNet dataset
 
 **Fully Connected Layers:**
 - Flatten
-- Dense (512 neurons, activation = relu)
+- Dense (activation = relu)
 - Dense (10 classes of art, activation = softmax)  
 
 **Compiled Model:**
 - Optimizer = stochastic gradient descent (SGD)
 - Loss = categorical cross-entropy
 
-#### TensorFlow with Inception v3 transfer learning
-Using TensorFlow's `inception_v3_arg_scope` function I was able to restore the latest pre-trained Inception v3 model and freeze all layers up until the last layer before the output layer. I replaced this layer with the correct number of outputs for my classification task (10), and added in several other essential elements to train/customize the model (e.g. loss function, optimizer, etc.). This architecture resembles the approach taken for the Keras ResNet50 model, in which the model takes advantage of the learning accomplished by the pre-trained Inception v3 model and then applies it to my particular computer-vision project.
+#### TensorFlow with Inception v3 baseline
+Using TensorFlow's `inception_v3_arg_scope` function I was able to restore the latest pre-trained Inception v3 model and freeze all layers up until the last layer before the output layer. I replaced this layer with the correct number of outputs for my classification task (10), and added in several other essential elements to train the model (e.g. loss function, optimizer). This architecture resembles the approach taken for the Keras ResNet50 model, in which the model takes advantage of the learning accomplished by the pre-trained Inception v3 model and then applies it to my particular computer-vision project.
 
 **Base Model:**  
 Inception v3 trained on ImageNet dataset
@@ -57,23 +55,24 @@ Inception v3 trained on ImageNet dataset
 - Loss = categorical cross-entropy
 
 #### TensorFlow
-I also constructed a standard CNN model using the TensorFlow library. In contrast to the two other models, this model did not benefit from transfer learning,.
+I also constructed a standard CNN model using the TensorFlow library. In contrast to the two other models, this model did not benefit from transfer learning.
 
 **Base Model:**  
-Three convolutional layers with max pooling
+Three convolutional layers with max pooling and relu activation
 
 **Fully Connected Layers:**
 - Flatten
-- Dense (2 layers, activation = relu)
+- Dense (activation = relu)
+- Dense (activation = relu)
 - Dense (10 classes of art, activation = softmax)
 
 **Compiled Model:**  
 - Optimizer = Adam
 - Loss = categorical cross-entropy
 
-
 ### Results
 All models were trained using an AWS DeepLearning AMI CUDA 8 Ubuntu EC2 instance
+
 #### Keras ResNet50
 Epochs: 30  
 Batch size: 25  
@@ -177,10 +176,10 @@ Pop Art: 0.00%
 As evident from the above results, none of the models were correct for all three images. Again, these results aren't entirely surprising given the difficulty of the image recognition objective. In contrast to other computer-vision object identification projects with high performance, no two pieces of art are the same.
 
 ### Next Steps
-While the models demonstrate some promise, they all has a long way to go before anyone would be able to confidently trust their output. Tweaks to the models' architecture make sense for immediate next steps, including the addition of supplemental fully connected layers, and automatic adjustments to the learning rate as model performance plateaus.
+While the models demonstrate some promise, they all has a long way to go before anyone would be able to confidently trust their output. Tweaks to the models' architectures make sense for immediate next steps, including the addition of supplemental fully connected layers, and automatic adjustments to the learning rate as model performance plateaus.
 
 ### Make Predictions
-All three models can be used to make predictions on new images. For the **Keras ResNet50** model, to make predictions you will need to download and save in a consolidated location the following in the same file structure:
+All three models can be used to make predictions on new images. For the **Keras ResNet50** model, to make predictions you will need to download and save in a consolidated location the following:
 
 ```
 +-- cnn_resnet_predict.py
@@ -198,10 +197,10 @@ python cnn_resnet_predict.py path_to_image
 Due to space limitations, the supporting model metadata, weights, and checkpoints for the TensorFlow models are not included in this repository. However, the provided code can be downloaded and run on a local machine, which will create the necessary model documentation. These files, combined with the original data files from Kaggle will complete the requisite file requirements to train the models and make predictions.
 
 ### Notes
-As mentioned above, due to file size and storage limitations, original data and training and test datasets have been omitted from this repository. Re-creation of these files can be performed by running the scripts after downloading the original image library from Kaggle.
+As mentioned above, due to file size and storage limitations, the original images and training and test datasets have been omitted from this repository. Re-creation of these files can be performed by running the scripts after downloading the original image library from Kaggle.
 
 ### Acknowledgements
 Segments of my code were adapted from the following three sources:
-1. Jen Waller's [Wildflower Finder](https://github.com/jw15/wildflower-finder) project
-2. Aurélien Géron's **Hands-On Maching Learning with Scikit-Learn & TensorFlow** and accompanying Jupyter notebook for Chapter 13: Convolutional Neural Networks
-3. Ankit Sachan's Tensorflow Tutorial 2: image classifier using convolutional neural network [blog post](http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/) and [GitHub repository](https://github.com/sankit1/cv-tricks.com/tree/master/Tensorflow-tutorials/tutorial-2-image-classifier)
+- Jen Waller's [Wildflower Finder](https://github.com/jw15/wildflower-finder) project
+- Aurélien Géron's **Hands-On Maching Learning with Scikit-Learn & TensorFlow** and accompanying Jupyter notebook for Chapter 13: Convolutional Neural Networks
+- Ankit Sachan's Tensorflow Tutorial 2: image classifier using convolutional neural network [blog post](http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/) and [GitHub repository](https://github.com/sankit1/cv-tricks.com/tree/master/Tensorflow-tutorials/tutorial-2-image-classifier)
